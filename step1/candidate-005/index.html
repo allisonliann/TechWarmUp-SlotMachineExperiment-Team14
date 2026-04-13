@@ -3,36 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGI Slot Machine - Token Guzzler 9000</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>AGI Tokenizer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="app">
         <header>
-            <h1>Token Guzzler 9000</h1>
-            <p class="subtitle">Burning your investor's cash, one spin at a time.</p>
+            <h1>The AGI Tokenizer</h1>
+            <p>Spend your tokens to achieve Artificial General Intelligence!</p>
         </header>
-
-        <div class="slot-machine">
-            <div class="reels">
-                <div class="reel" id="reel1">🧠</div>
-                <div class="reel" id="reel2">🤖</div>
-                <div class="reel" id="reel3">💸</div>
+        <main>
+            <div class="balance">
+                <h2>Your Tokens: <span id="token-balance">100</span></h2>
             </div>
-
+            <div class="slot-machine">
+                <div class="reel-container">
+                    <div class="reel" id="reel1"></div>
+                    <div class="reel" id="reel2"></div>
+                    <div class="reel" id="reel3"></div>
+                </div>
+                <div class="slot-overlay"></div>
+            </div>
             <div class="controls">
-                <button id="spin-btn">GENERATE RESPONSE</button>
+                <button id="spin-button">Spin (Cost: 5 Tokens)</button>
             </div>
-        </div>
-
-        <div class="stats">
-            <div class="token-display">Compute Tokens: <span id="tokens">500</span></div>
-            <div class="cost-per-spin">Cost per prompt: 10 Tokens</div>
-        </div>
-
-        <div class="message-box" id="message">
-            Ready to hallucinate?
-        </div>
+            <div class="message-container">
+                <p id="message">&nbsp;</p>
+            </div>
+        </main>
+        <footer>
+            <p>Built with 🤖 and a little bit of human ingenuity.</p>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>

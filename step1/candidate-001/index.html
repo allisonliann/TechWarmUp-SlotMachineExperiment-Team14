@@ -3,53 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Token Slot Machine</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>AI Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="casino-container">
-        <header>
-            <h1>PROMPT MASTER 3000</h1>
-            <p class="subtitle">Classic Vegas AI Edition</p>
-        </header>
 
-        <div class="stats-panel">
-            <div class="stat-box">
-                <span class="label">CONTEXT WINDOW</span>
-                <span id="token-balance" class="value">4096</span>
-                <span class="unit">Tokens</span>
-            </div>
+    <h1>AI Slot Machine</h1>
+
+    <div class="machine">
+        <div class="reels">
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="reel"></div>
         </div>
 
-        <div class="slot-machine">
-            <div class="reels-container">
-                <div class="reel" id="reel-1"><div class="symbol">🤖</div></div>
-                <div class="reel" id="reel-2"><div class="symbol">🤖</div></div>
-                <div class="reel" id="reel-3"><div class="symbol">🤖</div></div>
-                <div class="payline"></div>
-            </div>
-            
-            <div class="controls">
-                <button id="spin-button">GENERATE RESPONSE</button>
-            </div>
+        <div class="controls">
+            <button id="spin-button">Spin</button>
         </div>
 
-        <div class="message-center">
-            <p id="status-message">Ready to infer...</p>
+        <div class="balance">
+            <p>Tokens: <span id="balance-amount">100</span></p>
         </div>
-
-        <div class="paytable">
-            <h3>PAYTABLE (LOG PROBABILITIES)</h3>
-            <ul>
-                <li>🚀 🚀 🚀 : AGI Achieved (+5000)</li>
-                <li>🧠 🧠 🧠 : High Compute (+1000)</li>
-                <li>🤖 🤖 🤖 : Model Convergence (+500)</li>
-                <li>🪙 🪙 🪙 : Token Harvest (+100)</li>
-                <li>Any 🐛 : Hallucination Detected (0)</li>
-                <li>Any 📉 : Context Limit Reached (-50)</li>
-            </ul>
+        
+        <div class="message">
+            <p id="message-text">Press Spin to start!</p>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

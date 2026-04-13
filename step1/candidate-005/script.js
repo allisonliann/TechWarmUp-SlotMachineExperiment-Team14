@@ -1,95 +1,119 @@
-const symbols = ['🧠', '🤖', '📉', '🗑️', '💸'];
-const COST_PER_SPIN = 10;
-let tokens = 500;
+document.addEventListener('DOMContentLoaded', () => {
+    const tokenBalanceElement = document.getElementById('token-balance');
+    const spinButton = document.getElementById('spin-button');
+    const messageElement = document.getElementById('message');
+    const reels = [
+        document.getElementById('reel1'),
+        document.getElementById('reel2'),
+        document.getElementById('reel3')
+    ];
 
-const reels = [
-    document.getElementById('reel1'),
-    document.getElementById('reel2'),
-    document.getElementById('reel3')
-];
-const spinBtn = document.getElementById('spin-btn');
-const tokenDisplay = document.getElementById('tokens');
-const messageBox = document.getElementById('message');
+    const symbols = [
+        { symbol: '💎', value: 'AGI', payout: 100 },
+        { symbol: '🚀', value: 'Singularity', payout: 50 },
+        { symbol: '🧠', value: 'Model', payout: 20 },
+        { symbol: '💡', value: 'Prompt', payout: 10 },
+        { symbol: '📉', value: 'Deprecation', payout: 0 }
+    ];
 
-const jokes = {
-    win: [
-        "AGI achieved! But you still can't center a div.",
-        "Your model is 100% accurate. (Testing on training data only)",
-        "GPU clusters are humming. You've been promoted to Senior Prompt Engineer.",
-        "A VC just handed you $100M for this result."
-    ],
-    loss: [
-        "As an AI language model, I cannot provide a winning combination.",
-        "Hallucinated a profit. Unfortunately, your bank didn't.",
-        "Out of Memory (OOM). Your compute was wasted on cat pictures.",
-        "Safety alignment triggered: Winning is considered too competitive.",
-        "The model is currently 'thinking'... try again in 5 minutes."
-    ],
-    bankrupt: [
-        "Rate Limit Exceeded. Time to raise another Series A.",
-        "Your tokens have been depleted by 'Research Costs'.",
-        "The H100s have been repossessed. Game over."
-    ]
-};
+    const spinCost = 5;
+    let tokenBalance = 100;
+    let isSpinning = false;
 
-function getRandomSymbol() {
-    return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-function updateTokens(amount) {
-    tokens += amount;
-    tokenDisplay.innerText = tokens;
-    if (tokens < COST_PER_SPIN) {
-        spinBtn.disabled = true;
-        messageBox.innerText = jokes.bankrupt[Math.floor(Math.random() * jokes.bankrupt.length)];
-    }
-}
-
-function spin() {
-    if (tokens < COST_PER_SPIN) return;
-
-    updateTokens(-COST_PER_SPIN);
-    spinBtn.disabled = true;
-    messageBox.innerText = "Processing prompt...";
-    messageBox.className = "message-box";
-
-    const results = [];
-    
-    reels.forEach((reel, index) => {
-        reel.classList.add('spinning');
-        
-        // Stagger the stopping of each reel
-        setTimeout(() => {
-            const finalSymbol = getRandomSymbol();
-            reel.innerText = finalSymbol;
-            reel.classList.remove('spinning');
-            results[index] = finalSymbol;
-
-            if (index === reels.length - 1) {
-                evaluateResult(results);
-            }
-        }, 800 + (index * 600)); // 0.8s, 1.4s, 2.0s
+    // Initialize reels
+    reels.forEach(reel => {
+        reel.innerHTML = `<div class="symbol">${symbols[3].symbol}</div>`;
     });
-}
 
-function evaluateResult(results) {
-    const [s1, s2, s3] = results;
-    spinBtn.disabled = false;
-
-    if (s1 === s2 && s2 === s3) {
-        // Big Win (3 of a kind)
-        const payout = 200;
-        updateTokens(payout);
-        messageBox.innerHTML = `<span class="win">+${payout} Tokens!</span> ${jokes.win[Math.floor(Math.random() * jokes.win.length)]}`;
-    } else if (s1 === s2 || s2 === s3 || s1 === s3) {
-        // Small Win (2 of a kind)
-        const payout = 30;
-        updateTokens(payout);
-        messageBox.innerHTML = `<span class="win">+${payout} Tokens!</span> Not bad, for a human.`;
-    } else {
-        // Loss
-        messageBox.innerHTML = `<span class="lose">0 Tokens.</span> ${jokes.loss[Math.floor(Math.random() * jokes.loss.length)]}`;
+    function updateTokenBalance(amount) {
+        tokenBalance = amount;
+        tokenBalanceElement.textContent = tokenBalance;
     }
-}
 
-spinBtn.addEventListener('click', spin);
+    function showMessage(text, isWin = false) {
+        messageElement.textContent = text;
+        messageElement.style.color = isWin ? 'var(--win-color)' : 'var(--lose-color)';
+    }
+
+    function spin() {
+        if (isSpinning) return;
+        if (tokenBalance < spinCost) {
+            showMessage("Not enough tokens to spin!");
+            return;
+        }
+
+        isSpinning = true;
+        spinButton.disabled = true;
+        showMessage('Spinning...');
+        updateTokenBalance(tokenBalance - spinCost);
+
+        let finalResults = [];
+
+        reels.forEach((reel, index) => {
+            // Clone symbols to create a long strip for animation
+            const symbolStrip = [...symbols, ...symbols, ...symbols];
+            reel.innerHTML = ''; // Clear previous symbols
+            symbolStrip.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'symbol';
+                div.textContent = s.symbol;
+                reel.appendChild(div);
+            });
+            
+            // Reset transform
+            reel.style.transition = 'none';
+            reel.style.transform = 'translateY(0)';
+
+            const randomSymbolIndex = Math.floor(Math.random() * symbols.length);
+            finalResults.push(symbols[randomSymbolIndex]);
+            
+            // Calculate the final position
+            const targetPosition = -((symbols.length * 2) + randomSymbolIndex) * 150; // 150 is symbol height
+
+            setTimeout(() => {
+                reel.style.transition = `transform ${2.5 + index * 0.5}s cubic-bezier(0.25, 0.1, 0.25, 1)`;
+                reel.style.transform = `translateY(${targetPosition}px)`;
+            }, 100);
+        });
+        
+        // Wait for the last reel to stop
+        setTimeout(() => {
+            checkWin(finalResults);
+            isSpinning = false;
+            spinButton.disabled = false;
+        }, 3500);
+    }
+
+    function checkWin(results) {
+        const [r1, r2, r3] = results;
+
+        if (r1.symbol === r2.symbol && r2.symbol === r3.symbol) {
+            const payout = r1.payout;
+            if (payout > 0) {
+                showMessage(`Jackpot! You won ${payout} tokens!`, true);
+                updateTokenBalance(tokenBalance + payout);
+            } else {
+                showMessage('Three of a kind, but it's worthless!', false);
+            }
+        } else if (r1.symbol === r2.symbol || r2.symbol === r3.symbol) {
+            const pairSymbol = r1.symbol === r2.symbol ? r1 : r2;
+            const payout = Math.ceil(pairSymbol.payout / 4);
+            if (payout > 0) {
+                showMessage(`Pair! You won ${payout} tokens.`, true);
+                updateTokenBalance(tokenBalance + payout);
+            } else {
+                showMessage('A pair of nothing is still nothing.', false);
+            }
+        } 
+        else {
+            showMessage('Try again!', false);
+        }
+
+        if (tokenBalance < spinCost) {
+            spinButton.disabled = true;
+            showMessage("You're out of tokens! Refresh to restart.", false);
+        }
+    }
+
+    spinButton.addEventListener('click', spin);
+});

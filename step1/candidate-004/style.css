@@ -1,189 +1,143 @@
-:root {
-    --bg-color: #0d1117;
-    --card-bg: #161b22;
-    --primary: #58a6ff;
-    --accent: #79c0ff;
-    --text: #c9d1d9;
-    --win-color: #3fb950;
-    --loss-color: #f85149;
-    --reel-size: 100px;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    background-color: var(--bg-color);
-    color: var(--text);
-    font-family: 'Courier New', Courier, monospace;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px 0;
 }
 
-.container {
-    width: 90%;
-    max-width: 600px;
-    background: var(--card-bg);
-    border: 2px solid var(--primary);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+#payout-table {
+    margin-top: 20px;
+    background-color: #fff;
+    border: 5px solid #2c3e50;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#payout-table h2 {
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+#payout-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#payout-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+#payout-table td:last-child {
+    text-align: right;
+    font-weight: bold;
+    color: #3498db;
+}
+
+#machine {
+    background-color: #fff;
+    border: 10px solid #2c3e50;
+    border-radius: 20px;
+    padding: 30px;
     text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-header h1 {
-    color: var(--primary);
-    margin-bottom: 1rem;
+h1 {
+    color: #2c3e50;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-#stats {
-    background: rgba(88, 166, 255, 0.1);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-}
-
-#balance {
-    color: var(--accent);
-    font-weight: bold;
-}
-
-/* Slot Machine Styles */
-#slot-machine {
+#reels {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    background: #000;
-    padding: 20px;
-    border-radius: 8px;
-    border: 4px solid #30363d;
-    position: relative;
-    margin-bottom: 2rem;
+    margin: 30px 0;
+    perspective: 1000px;
 }
 
 .reel {
-    width: var(--reel-size);
-    height: var(--reel-size);
-    background: #21262d;
-    border: 2px solid #30363d;
-    overflow: hidden;
-    position: relative;
-}
-
-.reel-strip {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-}
-
-.symbol {
-    width: var(--reel-size);
-    height: var(--reel-size);
+    width: 120px;
+    height: 120px;
+    border: 5px solid #3498db;
+    margin: 0 15px;
+    font-size: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    transition: transform 0.5s ease-out;
 }
 
-.win-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: rgba(88, 166, 255, 0.3);
-    transform: translateY(-50%);
-    pointer-events: none;
+.reel.spinning {
+    animation: spin 0.5s ease-out;
 }
 
-/* Controls */
-#controls {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+@keyframes spin {
+    0% {
+        transform: translateY(-100px) rotateX(180deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0);
+    }
 }
 
-button {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-family: inherit;
-    font-weight: bold;
+#controls button {
+    padding: 15px 30px;
+    font-size: 20px;
     cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.2s, transform 0.1s;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background: var(--accent);
+#controls button:hover {
+    background-color: #2980b9;
 }
 
-button:active {
-    transform: scale(0.98);
+#wallet {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #2c3e50;
 }
 
-button:disabled {
-    background: #30363d;
-    cursor: not-allowed;
-    opacity: 0.6;
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #e74c3c;
+    min-height: 25px;
 }
 
-#reset-btn {
-    background: transparent;
-    border: 2px solid var(--win-color);
-    color: var(--win-color);
+.special-message {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-#reset-btn:hover {
-    background: var(--win-color);
-    color: #fff;
+#jackpot-message {
+    color: #f1c40f;
 }
 
-#message-area {
-    min-height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#free-spin-message {
+    color: #2ecc71;
 }
 
-#status {
-    font-style: italic;
-}
-
-footer {
-    margin-top: 2rem;
-    font-size: 0.8rem;
-    color: #8b949e;
-}
-
-/* Animations */
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10px { transform: translate(-1px, -2px) rotate(-1deg); }
-    20px { transform: translate(-3px, 0px) rotate(1deg); }
-    30px { transform: translate(3px, 2px) rotate(0deg); }
-    40px { transform: translate(1px, -1px) rotate(1deg); }
-}
-
-.win-flash {
-    animation: shake 0.5s;
-    color: var(--win-color) !important;
-}
-
-.spinning {
-    transition: none !important;
+@media (max-width: 600px) {
+    .reel {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+        margin: 0 10px;
+    }
 }
