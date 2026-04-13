@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+    <h1>AI Slot Machine</h1>
+    <div class="slot-machine">
+        <div class="reels">
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="reel"></div>
+        </div>
+        <div class="controls">
+            <button id="spin-button">Spin (1 Token)</button>
+            <button id="reset-button">Reset</button>
+        </div>
+        <div class="balance">
+            <p>Tokens: <span id="token-balance">100</span></p>
+        </div>
+        <div class="message">
+            <p id="message-text"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
