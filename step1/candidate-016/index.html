@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="slot-machine">
+        <h1>AI Tokenizer</h1>
+        <div id="reels">
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="reel"></div>
+        </div>
+        <div id="controls">
+            <button id="spin-button">Spin</button>
+            <div id="bet-controls">
+                <button id="decrease-bet">-</button>
+                <span>Bet: <span id="bet-amount">10</span></span>
+                <button id="increase-bet">+</button>
+            </div>
+        </div>
+        <div id="info">
+            <p>Tokens: <span id="token-balance">1000</span></p>
+            <p id="message">Spin to win!</p>
+        </div>
+        <button id="mute-button">Mute</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
