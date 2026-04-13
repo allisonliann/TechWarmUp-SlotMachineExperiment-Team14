@@ -1,0 +1,171 @@
+:root {
+    --bg-color: #1a1a2e;
+    --primary-color: #16213e;
+    --secondary-color: #0f3460;
+    --accent-color: #e94560;
+    --font-color: #dcdcdc;
+    --glow-color: #53d8fb;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#app {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--glow-color);
+    text-shadow: 0 0 5px var(--glow-color);
+    margin-bottom: 0.5rem;
+}
+
+.machine {
+    background-color: var(--primary-color);
+    border: 2px solid var(--glow-color);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(83, 216, 251, 0.3);
+}
+
+.displays {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.display-box {
+    background-color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--bg-color);
+    width: 40%;
+}
+
+.display-box h3 {
+    margin: 0 0 5px 0;
+    font-size: 0.9em;
+    color: var(--glow-color);
+}
+
+.display-value {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #fff;
+}
+
+.reels-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 20%, transparent 80%, rgba(0,0,0,0.8));
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+    overflow: hidden;
+}
+
+.reel {
+    background-color: var(--bg-color);
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+    font-size: 60px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.reel .reel-symbols {
+    transition: transform 0.2s ease-in-out;
+}
+
+.reel.spinning .reel-symbols {
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.message {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    min-height: 24px;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.message.win {
+    color: #50fa7b;
+    box-shadow: 0 0 10px #50fa7b;
+}
+
+.message.lose {
+    color: var(--accent-color);
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.spin-button {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 0 #b83349;
+}
+
+.spin-button:hover:not(:disabled) {
+    background-color: #f05571;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #b83349;
+}
+
+.spin-button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #b83349;
+}
+
+.spin-button:disabled {
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
+    box-shadow: 0 5px 0 #333;
+}
+
+.spin-button .button-text {
+    display: block;
+}
+
+.spin-button .button-cost {
+    display: block;
+    font-size: 0.5em;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+

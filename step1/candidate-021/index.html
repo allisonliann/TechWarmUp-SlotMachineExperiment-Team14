@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Singularity Slot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="slot-machine">
+        <header>
+            <h1>The Singularity Slot</h1>
+            <p>Spin to generate more training data (tokens)!</p>
+        </header>
+
+        <div class="reels-container">
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="reel"></div>
+        </div>
+
+        <div class="controls">
+            <div class="display">
+                <span>Tokens:</span>
+                <span id="token-balance">100</span>
+            </div>
+            <button id="spin-button">Spin (Cost: 5)</button>
+        </div>
+
+        <div class="message-box">
+            <p id="message-text">Welcome! Insert tokens to begin model training.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,211 @@
+:root {
+    --bg-color: #1a1a2e;
+    --primary-color: #16213e;
+    --secondary-color: #0f3460;
+    --accent-color: #e94560;
+    --text-color: #dcdcdc;
+    --font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.slot-machine {
+    background-color: var(--primary-color);
+    border: 5px solid var(--secondary-color);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+    width: 90%;
+    max-width: 450px;
+}
+
+header h1 {
+    color: var(--accent-color);
+    margin-top: 0;
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.displays {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    background: var(--bg-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.display-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.display-label {
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+#token-balance, #bet-amount {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+}
+
+.reels-container {
+    position: relative;
+    margin: 20px 0;
+}
+
+.reels {
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 10px;
+    height: 120px; /* Height for one symbol */
+    overflow: hidden;
+}
+
+.reel {
+    width: 100px;
+    background-color: var(--bg-color);
+    margin: 0 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.reel .symbol-container {
+    /* The transition is set by JS for the spin animation */
+}
+
+.reel .symbol {
+    font-size: 80px;
+    line-height: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.win-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: rgba(233, 69, 96, 0.7);
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px var(--accent-color);
+    z-index: 10;
+}
+
+.message-area {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: var(--bg-color);
+    border-radius: 10px;
+    margin: 20px 0;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+#message.win {
+    color: #4caf50;
+    animation: pulse 0.5s 2;
+}
+
+#message.lose {
+    color: var(--accent-color);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.spin-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 5px solid #b8374d;
+}
+
+.spin-btn:hover {
+    filter: brightness(1.1);
+}
+
+.spin-btn:active {
+    transform: translateY(3px);
+    border-bottom-width: 2px;
+}
+
+.spin-btn:disabled {
+    background-color: #555;
+    border-bottom-color: #333;
+    cursor: not-allowed;
+    filter: none;
+}
+
+.bet-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 2em;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 4px solid #0a2342;
+}
+
+.bet-btn:hover {
+    filter: brightness(1.2);
+}
+
+.bet-btn:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+}
+
+.bet-btn:disabled {
+    background-color: #444;
+    color: #888;
+    cursor: not-allowed;
+    border-bottom-color: #222;
+    filter: none;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.7em;
+    color: #888;
+}
+
