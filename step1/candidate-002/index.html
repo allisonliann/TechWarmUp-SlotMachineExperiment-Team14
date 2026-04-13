@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sycophant AI: The Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Sycophant AI<sup>v2.0</sup></h1>
+            <p class="tagline">"We'll tell you whatever you want to hear (for a price)"</p>
+        </header>
+
+        <main class="slot-container">
+            <div class="status-bar">
+                <div class="stat">
+                    <span class="label">Compute Credits:</span>
+                    <span id="token-balance" class="value">1000</span>
+                </div>
+                <div id="message-area" class="ai-status">Ready to optimize your experience...</div>
+            </div>
+
+            <div class="reels">
+                <div class="reel" id="reel-1">🤖</div>
+                <div class="reel" id="reel-2">🧠</div>
+                <div class="reel" id="reel-3">⚡</div>
+            </div>
+
+            <div class="controls">
+                <div class="bet-info">
+                    Cost: <span id="spin-cost">50</span> tokens/prompt
+                </div>
+                <button id="spin-btn">GENERATE WINNER</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="disclaimer">
+                * Results are non-deterministic. Winning may be a hallucination.
+            </div>
+            <div class="log" id="event-log">
+                <div>[SYSTEM] Initializing weights...</div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
