@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Token Casino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <header class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">AI_TOKEN_CASINO_v1.0.exe</span>
+        </header>
+        
+        <main class="terminal-body">
+            <div class="stats-display">
+                <div class="stat-box">
+                    <span class="label">CONTEXT_BALANCE:</span>
+                    <span id="balance" class="value">1000</span>
+                    <span class="unit">TOKENS</span>
+                </div>
+                <div class="stat-box">
+                    <span class="label">PROMPT_COST:</span>
+                    <span class="value">100</span>
+                    <span class="unit">TOKENS</span>
+                </div>
+            </div>
+
+            <div class="slot-machine">
+                <div class="reels">
+                    <div id="reel1" class="reel">?</div>
+                    <div id="reel2" class="reel">?</div>
+                    <div id="reel3" class="reel">?</div>
+                </div>
+                <div class="payline"></div>
+            </div>
+
+            <div class="status-monitor">
+                <div class="monitor-header">SYSTEM_LOG:</div>
+                <div id="status-message" class="monitor-text">Initializing parameters... Ready to prompt.</div>
+            </div>
+
+            <div class="controls">
+                <button id="spin-button" class="btn-primary">GENERATE_OUTCOME (100 TOKENS)</button>
+            </div>
+        </main>
+        
+        <footer class="terminal-footer">
+            <span class="footer-text">© 2026 OpenAI Casino - "Your tokens, our hallucination."</span>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
