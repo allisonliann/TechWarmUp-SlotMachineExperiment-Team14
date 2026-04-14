@@ -11,14 +11,14 @@
 | **Files produced** |3|
 | **Lines of code** |334|
 | **Runs in browser?** | yes |
-**App Quality Notes**
+### App Quality Notes**
 - The application runs correctly in the browser  
 - The interface is simple and easy to understand  
 - The slot machine produces clear outputs with symbols  
 - Basic animations and interactions are working  
 - No major bugs were observed during testing  
 - The app follows the given prompt with AI-themed elements   
-**Code Quality Notes**
+### Code Quality Notes**
 - Code is readable and generally well-structured  
 - HTML, CSS, and JavaScript are separated properly  
 - Core logic works correctly with no syntax errors  
