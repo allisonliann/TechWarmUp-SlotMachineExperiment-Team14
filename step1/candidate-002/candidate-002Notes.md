@@ -1,8 +1,8 @@
 # Measured Data
-Run ID: 002
-TimeStamp: 2:40 pm
-Model: Gemini 2.5 Pro
-Input Tokens: 1000 Tokens
+Run ID: 002<br>
+TimeStamp: 2:40 pm<br>
+Model: Gemini 2.5 Pro<br>
+Input Tokens: 1000 Tokens<br>
 Output Tokens: Dependent on a Bet Amount
 - 🔥: 50 * (floor(Bet Amount/2) || Bet Ammount)
 - ⭐: 40 * (floor(Bet Amount/2) || Bet Ammount)
@@ -12,16 +12,16 @@ Output Tokens: Dependent on a Bet Amount
 - 🔗: 10 * (floor(Bet Amount/2) || Bet Ammount)
 - 📜: 05 * (floor(Bet Amount/2) || Bet Ammount)
 - 📉: 02 * (floor(Bet Amount/2) || Bet Ammount)
-Total Tokens: N/A
-Wall-clock Time: 28.61s
+<br>Total Tokens: N/A<br>
+Wall-clock Time: 28.61s<br>
 Tool-Reported Time: 
 - API Time: 36.8s
 - Tool Time: 41.8s
-Files Produced: 
+<br>Files Produced: 
 1. index.html (40 Lines of Code)
 2. style.css (95 Lines of Code)
 3. script.js (143 Lines of Code)
-Runs in Browser: Yes
+<br>Runs in Browser: Yes<br>
 
 # App Quality
 1. Application: Yes 

@@ -1,8 +1,8 @@
 # Measured Data
-Run ID: 004
-TimeStamp: 3:54 pm
-Model: Gemini 2.5 Pro
-Input Tokens: 100 Tokens
+Run ID: 004<br>
+TimeStamp: 3:54 pm<br>
+Model: Gemini 2.5 Pro<br>
+Input Tokens: 100 Tokens<br>
 Output Tokens: 
 - 🤖🤖🤖: +20 
 - 🧠🧠🧠: +30
@@ -10,16 +10,16 @@ Output Tokens:
 - 💻💻💻: +15
 - 📝📝📝: Free Spin
 - 💥💥💥: -10
-Total Tokens: N/A
-Wall-clock Time: 4 min 09s
+<br>Total Tokens: N/A<br>
+Wall-clock Time: 4 min 09s<br>
 Tool-Reported Time: 
 - API Time: 3m 33s
 - Tool Time: 44.4s
-Files Produced: 
+<br>Files Produced: 
 1. index.html (70 Lines of Code)
 2. style.css (143 Lines of Code)
 3. script.js (106 Lines of Code)
-Runs in Browser: Yes
+<br>Runs in Browser: Yes<br>
 
 # App Quality
 1. Application: Yes, but running any actual function causes an error. 

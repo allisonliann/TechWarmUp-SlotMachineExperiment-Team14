@@ -1,24 +1,24 @@
 # Measured Data
-Run ID: 003
-TimeStamp: 3:25 pm
-Model: Gemini 2.5 Pro
-Input Tokens: 1000 Tokens
+Run ID: 003<br>
+TimeStamp: 3:25 pm<br>
+Model: Gemini 2.5 Pro<br>
+Input Tokens: 1000 Tokens<br>
 Output Tokens: Dependent on a Bet Amount
 - 💰: +500
 - 🎰: +250
 - 🤖,🧠,💡: +50
 - 💥: -10
 - No Match: 0
-Total Tokens: N/A
-Wall-clock Time: 1 min 30s
+<br>Total Tokens: N/A<br>
+Wall-clock Time: 1 min 30s<br>
 Tool-Reported Time: 
 - API Time: 1m 5s
 - Tool Time: 27s
-Files Produced: 
+<br>Files Produced: 
 1. index.html (25 Lines of Code)
 2. style.css (89 Lines of Code)
 3. script.js (113 Lines of Code)
-Runs in Browser: Yes
+<br>Runs in Browser: Yes<br>
 
 # App Quality
 1. Application: Yes 
