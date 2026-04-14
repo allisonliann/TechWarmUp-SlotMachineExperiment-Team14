@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Burner 3000: AI Slot Machine</title>
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --bg-color: #0a0a0c;
+            --card-bg: #1a1a2e;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .slot-machine {
+            background: var(--card-bg);
+            padding: 2rem;
+            border: 4px solid var(--neon-pink);
+            border-radius: 15px;
+            box-shadow: 0 0 20px var(--neon-pink);
+            display: flex;
+            gap: 15px;
+            position: relative;
+        }
+
+        .reel {
+            width: 100px;
+            height: 150px;
+            background: #000;
+            border: 2px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .symbol-container {
+            transition: transform 2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .symbol {
+            width: 100px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .controls {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: var(--neon-blue);
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        button:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        button:disabled {
+            background: #444;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 1rem;
+            height: 1.5rem;
+            color: var(--neon-pink);
+            font-weight: bold;
+        }
+
+        .log {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #888;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>TOKEN BURNER 3000</h1>
+        <p>Inference is expensive. Spin to scale!</p>
+    </div>
+
+    <div class="stats">
+        Context Window: <span id="token-count">1000</span> Tokens
+    </div>
+
+    <div class="slot-machine">
+        <div class="reel" id="reel1"><div class="symbol-container" id="container1"></div></div>
+        <div class="reel" id="reel2"><div class="symbol-container" id="container2"></div></div>
+        <div class="reel" id="reel3"><div class="symbol-container" id="container3"></div></div>
+    </div>
+
+    <div class="controls">
+        <button id="spin-button">Generate Response (-50 Tokens)</button>
+        <div class="message" id="status-msg">Ready to hallucinate...</div>
+    </div>
+
+    <div class="log" id="ai-log">
+        [SYSTEM]: Awaiting prompt injection...
+    </div>
+
+    <script>
+        const symbols = ['🤖', '🧠', '⚡', '💸', '📉', '🎰'];
+        const spinCost = 50;
+        let tokens = 1000;
+        let isSpinning = false;
+
+        const tokenDisplay = document.getElementById('token-count');
+        const containers = [
+            document.getElementById('container1'),
+            document.getElementById('container2'),
+            document.getElementById('container3')
+        ];
+        const spinButton = document.getElementById('spin-button');
+        const statusMsg = document.getElementById('status-msg');
+        const aiLog = document.getElementById('ai-log');
+
+        const phrases = [
+            "Optimizing weights...",
+            "Context window overflowing!",
+            "RAG pipeline clogged.",
+            "Buying more H100s...",
+            "Aligning with human values (maybe)...",
+            "Quantizing model to 1-bit...",
+            "RLHF failed successfully."
+        ];
+
+        // Initialize reels with random icons
+        function init() {
+            containers.forEach(container => {
+                for (let i = 0; i < 20; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'symbol';
+                    div.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    container.appendChild(div);
+                }
+            });
+        }
+
+        async function spin() {
+            if (isSpinning || tokens < spinCost) return;
+
+            // Deduct tokens
+            isSpinning = true;
+            tokens -= spinCost;
+            updateUI();
+            
+            spinButton.disabled = true;
+            statusMsg.textContent = "Inferencing...";
+            aiLog.textContent = `[LOG]: ${phrases[Math.floor(Math.random() * phrases.length)]}`;
+
+            const results = [];
+            
+            const animationPromises = containers.map((container, index) => {
+                return new Promise(resolve => {
+                    const randomSymbolIndex = Math.floor(Math.random() * symbols.length);
+                    results.push(symbols[randomSymbolIndex]);
+                    
+                    // Add the target symbol to the end to ensure it lands where we want
+                    const targetDiv = document.createElement('div');
+                    targetDiv.className = 'symbol';
+                    targetDiv.textContent = symbols[randomSymbolIndex];
+                    container.appendChild(targetDiv);
+
+                    // Calculate offset: (Total children - 1) * height of one symbol
+                    const offset = (container.children.length - 1) * 150;
+                    
+                    setTimeout(() => {
+                        container.style.transition = `transform ${2 + index * 0.5}s cubic-bezier(0.45, 0.05, 0.55, 0.95)`;
+                        container.style.transform = `translateY(-${offset}px)`;
+                    }, 50);
+
+                    setTimeout(resolve, 2500 + index * 500);
+                });
+            });
+
+            await Promise.all(animationPromises);
+
+            checkWin(results);
+            isSpinning = false;
+            spinButton.disabled = tokens < spinCost;
+        }
+
+        function checkWin(results) {
+            const allSame = results.every(val => val === results[0]);
+            
+            if (allSame) {
+                const winAmount = 500;
+                tokens += winAmount;
+                statusMsg.textContent = `JACKPOT! +${winAmount} Tokens (Series A Funding Received)`;
+                statusMsg.style.color = "var(--neon-blue)";
+            } else if (results[0] === results[1] || results[1] === results[2]) {
+                const smallWin = 100;
+                tokens += smallWin;
+                statusMsg.textContent = `Match! +${smallWin} Tokens (VC Micro-grant)`;
+                statusMsg.style.color = "white";
+            } else {
+                statusMsg.textContent = "Hallucination detected. Try again.";
+                statusMsg.style.color = "var(--neon-pink)";
+            }
+            updateUI();
+        }
+
+        function updateUI() {
+            tokenDisplay.textContent = tokens;
+            if (tokens <= 0) {
+                statusMsg.textContent = "Bankrupt. File for Chapter 11.";
+                spinButton.textContent = "Out of Compute";
+            }
+        }
+
+        spinButton.addEventListener('click', spin);
+
+        init();
+    </script>
+</body>
+</html>

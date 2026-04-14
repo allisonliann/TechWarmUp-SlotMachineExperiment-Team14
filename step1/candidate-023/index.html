@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Token Burner - Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="slot-machine">
+        <header>
+            <h1>AI Token Burner</h1>
+            <p>Will your model converge or hallucinate?</p>
+        </header>
+
+        <div class="displays">
+            <div class="display-box">
+                <span class="display-label">Tokens</span>
+                <span id="token-balance">1000</span>
+            </div>
+            <div class="display-box">
+                <span class="display-label">Bet</span>
+                <span id="bet-amount">50</span>
+            </div>
+        </div>
+
+        <div class="reels-container">
+            <div class="reels">
+                <div class="reel"></div>
+                <div class="reel"></div>
+                <div class="reel"></div>
+            </div>
+            <div class="win-line"></div>
+        </div>
+
+
+        <div class="message-area">
+            <p id="message">Press SPIN to query the model.</p>
+        </div>
+
+        <div class="controls">
+            <button id="bet-down" class="bet-btn" title="Decrease Bet">-</button>
+            <button id="spin-button" class="spin-btn">SPIN</button>
+            <button id="bet-up" class="bet-btn" title="Increase Bet">+</button>
+        </div>
+
+        <footer>
+            <p>No real AI was harmed (or created) in this game.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

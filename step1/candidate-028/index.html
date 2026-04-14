@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Grifter 3000</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="machine-container">
+        <h1>Generative Grifter 3000</h1>
+        <div class="stats">
+            <p>Compute Tokens: <span id="token-count">100</span></p>
+            <p id="status-msg">Feed the model to avoid hallucination...</p>
+        </div>
+
+        <div class="slot-machine">
+            <div class="reel" id="reel1"><div class="reel-strip"></div></div>
+            <div class="reel" id="reel2"><div class="reel-strip"></div></div>
+            <div class="reel" id="reel3"><div class="reel-strip"></div></div>
+        </div>
+
+        <button id="spin-button">SPIN (Cost: 10 Tokens)</button>
+        <div class="legend">
+            <p>🤖 🤖 🤖 = AGI Achieved (+100)</p>
+            <p>⚡ ⚡ ⚡ = Overclocked (+50)</p>
+            <p>📉 📉 📉 = Model Collapse (-50)</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

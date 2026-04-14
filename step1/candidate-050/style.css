@@ -1,0 +1,132 @@
+:root {
+    --bg-color: #121212;
+    --primary-color: #00ff88; /* Neon Green */
+    --secondary-color: #00e0ff; /* Neon Blue */
+    --accent-color: #ff007a; /* Neon Pink/Red */
+    --text-color: #ffffff;
+    --reel-bg: #1e1e1e;
+    --border-radius: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 90%;
+    max-width: 600px;
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+    text-align: center;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    background-color: #222;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#balance {
+    color: var(--secondary-color);
+}
+
+#spin-cost {
+    color: var(--accent-color);
+}
+
+.slot-machine {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.reel {
+    width: 100px;
+    height: 120px;
+    background-color: var(--reel-bg);
+    border: 3px solid #333;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    transition: transform 0.1s ease-in-out;
+}
+
+.spinning {
+    animation: reel-spin 0.2s linear infinite;
+}
+
+@keyframes reel-spin {
+    0% { transform: translateY(-5px); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(-5px); }
+}
+
+#spin-button {
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+#spin-button:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+#spin-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#status-display {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #222;
+    border-radius: var(--border-radius);
+    min-height: 50px;
+}
+
+#status-message {
+    font-size: 1.2rem;
+    color: #ccc;
+    font-style: italic;
+}
+
+footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #555;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hype Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Stochastic Parrot Slots</h1>
+            <p>Spin the reels of innovation! Will you achieve singularity or just a model hallucination?</p>
+        </header>
+
+        <div class="machine">
+            <div class="displays">
+                <div class="display-box">
+                    <h3>Tokens</h3>
+                    <div id="token-balance" class="display-value">100</div>
+                </div>
+                <div class="display-box">
+                    <h3>Last Win</h3>
+                    <div id="last-win" class="display-value">0</div>
+                </div>
+            </div>
+
+            <div class="reels-container">
+                <div class="reel"></div>
+                <div class="reel"></div>
+                <div class="reel"></div>
+            </div>
+            
+            <div id="message-box" class="message">Press Spin to Start!</div>
+
+            <div class="controls">
+                <button id="spin-button" class="spin-button">
+                    <span class="button-text">SPIN</span>
+                    <span class="button-cost">Cost: 2 Tokens</span>
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Disclaimer: This is not a real gambling app. No actual GPUs were harmed in the making of this game.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
