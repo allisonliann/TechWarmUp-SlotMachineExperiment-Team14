@@ -1,0 +1,106 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+#slot-machine {
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#reels {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    border: 2px solid #ced4da;
+}
+
+.reel {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #adb5bd;
+}
+
+.reel.spinning {
+    animation: spin 0.1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(20px); }
+}
+
+#controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+#controls button:hover {
+    background-color: #0056b3;
+}
+
+#controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#wallet {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+
+#wallet h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #495057;
+}
+
+#wallet p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+#message-display {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #dc3545;
+    font-weight: bold;
+    height: 20px;
+}
