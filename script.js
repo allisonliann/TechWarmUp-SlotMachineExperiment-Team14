@@ -1,155 +1,146 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- DOM Elements ---
     const tokensDisplay = document.getElementById('tokens');
-    const betAmountDisplay = document.getElementById('bet-amount');
-    const spinButton = document.getElementById('spin-button');
-    const betDecreaseButton = document.getElementById('bet-decrease');
-    const betIncreaseButton = document.getElementById('bet-increase');
-    const gameMessage = document.getElementById('game-message');
-    const reels = [
+    const reelElements = [
         document.getElementById('reel1'),
         document.getElementById('reel2'),
         document.getElementById('reel3')
     ];
+    const spinButton = document.getElementById('spinButton');
+    const messageDisplay = document.getElementById('message');
 
+    // --- Game State ---
     let tokens = 100;
-    let betAmount = 10;
-    const minBet = 5;
-    const maxBet = 50;
-    const symbols = [
-        { char: '🤖', name: 'Robot', value: 10 },
-        { char: '🧠', name: 'Brain', value: 10 },
-        { char: '💾', name: 'Disk', value: 10 },
-        { char: '💻', name: 'Computer', value: 10 },
-        { char: '💡', name: 'Idea', value: 15 },
-        { char: '⚡', name: 'Power', value: 15 },
-        { char: '📊', name: 'Data', value: 20 },
-        { char: '⚙️', name: 'Gear', value: 20 },
-        { char: '✨', name: 'Innovation', value: 25 }
-    ]; // AI-themed symbols
+    const betAmount = 10;
+    let isSpinning = false;
 
-    // Initialize display
-    updateDisplay();
-    initializeReels();
+    // AI-themed symbols (using emojis for simplicity)
+    const reelSymbols = ['🧠', '🤖', '💬', '💻', '🐛', '🚀', '💡', '📡'];
 
-    function updateDisplay() {
+    // --- Helper Functions ---
+
+    /**
+     * Updates the tokens display on the page.
+     */
+    function updateTokensDisplay() {
         tokensDisplay.textContent = tokens;
-        betAmountDisplay.textContent = betAmount;
     }
 
-    function getSymbolChar(symbol) {
-        return symbol.char;
+    /**
+     * Displays a message to the user.
+     * @param {string} msg The message to display.
+     * @param {boolean} isWinning True if it's a winning message, false otherwise.
+     */
+    function displayMessage(msg, isWinning = false) {
+        messageDisplay.textContent = msg;
+        if (!isWinning) {
+            messageDisplay.style.color = '#ff6b6b'; // Red for losses/errors
+        } else {
+            messageDisplay.style.color = '#70e000'; // Green for wins
+        }
     }
 
-    function initializeReels() {
-        reels.forEach(reel => {
-            reel.textContent = getSymbolChar(symbols[Math.floor(Math.random() * symbols.length)]);
+    /**
+     * Initializes the game state and UI.
+     */
+    function initializeGame() {
+        updateTokensDisplay();
+        // Set initial random symbols
+        reelElements.forEach(reel => {
+            reel.textContent = getRandomSymbol();
+        });
+        displayMessage("Press 'Spin' to begin your AI adventure!");
+    }
+
+    /**
+     * Gets a random symbol from the reelSymbols array.
+     * @returns {string} A random AI-themed symbol.
+     */
+    function getRandomSymbol() {
+        return reelSymbols[Math.floor(Math.random() * reelSymbols.length)];
+    }
+
+    /**
+     * Simulates the spinning of a single reel and settles on a final symbol.
+     * @param {HTMLElement} reel The DOM element for the reel.
+     * @returns {Promise<string>} A promise that resolves with the final symbol after spinning.
+     */
+    function spinSingleReel(reel) {
+        return new Promise(resolve => {
+            reel.classList.add('spinning');
+            const duration = 2000 + Math.random() * 1000; // 2-3 seconds spin
+            const intervalTime = 50; // Update symbol every 50ms
+
+            let spinInterval = setInterval(() => {
+                reel.textContent = getRandomSymbol();
+            }, intervalTime);
+
+            setTimeout(() => {
+                clearInterval(spinInterval);
+                reel.classList.remove('spinning');
+                const finalSymbol = getRandomSymbol(); // Get the actual final symbol
+                reel.textContent = finalSymbol;
+                resolve(finalSymbol);
+            }, duration);
         });
     }
 
-    function showMessage(message, isError = false) {
-        gameMessage.textContent = message;
-        gameMessage.style.color = isError ? '#dc3545' : '#28a745';
+    /**
+     * Checks if the current reel results constitute a win and calculates payout.
+     * @param {string[]} results An array of the final symbols on each reel.
+     * @returns {number} The amount of tokens won, or 0 if no win.
+     */
+    function checkWin(results) {
+        const [s1, s2, s3] = results;
+
+        if (s1 === s2 && s2 === s3) {
+            // Three identical symbols: Big win!
+            return 50;
+        } else if (s1 === s2 || s2 === s3 || s1 === s3) {
+            // Two identical symbols: Small win
+            return 20;
+        }
+        return 0; // No win
     }
 
-    async function spin() {
+    /**
+     * Handles the main spin action when the button is clicked.
+     */
+    async function spinHandler() {
+        if (isSpinning) return; // Prevent multiple spins
+
         if (tokens < betAmount) {
-            showMessage("Insufficient AI Tokens for this bet!", true);
+            displayMessage("Insufficient compute resources. Need more tokens!", false);
             return;
         }
 
-        tokens -= betAmount;
-        updateDisplay();
+        isSpinning = true;
         spinButton.disabled = true;
-        betDecreaseButton.disabled = true;
-        betIncreaseButton.disabled = true;
-        showMessage("AI is thinking... processing your request!");
+        tokens -= betAmount;
+        updateTokensDisplay();
+        displayMessage("AI is thinking... processing data...", false);
 
-        const finalSymbols = [];
-        const spinDuration = 2000; // Total spin duration in ms for all reels
-        const reelStopDelay = 500; // Delay between each reel stopping
+        // Spin all reels concurrently
+        const reelPromises = reelElements.map(reel => spinSingleReel(reel));
+        const finalSymbols = await Promise.all(reelPromises); // Wait for all reels to stop
 
-        const spinPromises = reels.map((reel, index) => {
-            return new Promise(async resolve => {
-                // Add spinning class and dynamic content for CSS animation
-                reel.classList.add('spinning');
-                let spinContent = '';
-                for (let i = 0; i < 30; i++) { // Generate enough random symbols for the animation
-                    spinContent += getSymbolChar(symbols[Math.floor(Math.random() * symbols.length)]);
-                }
-                reel.setAttribute('data-spin-content', spinContent);
-                reel.innerHTML = ''; // Clear current symbol to show animation
+        const winnings = checkWin(finalSymbols);
 
-                // Stagger reel stops
-                await new Promise(r => setTimeout(r, index * reelStopDelay));
-
-                // Stop reel and set final symbol
-                setTimeout(() => {
-                    reel.classList.remove('spinning');
-                    const chosenSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-                    reel.textContent = getSymbolChar(chosenSymbol); // Set the final symbol
-                    finalSymbols[index] = chosenSymbol;
-                    resolve();
-                }, spinDuration);
-            });
-        });
-
-        await Promise.all(spinPromises);
-
-        // Ensure all final symbols are set before determining win/loss
-        // This loop helps if Promise.all resolves faster than individual reel timeouts
-        await new Promise(r => setTimeout(r, spinDuration + reels.length * reelStopDelay + 100)); // Ensure all reels have truly settled
-
-        // Determine win/loss after all reels have stopped and finalSymbols are set
-        let winAmount = 0;
-        const s1 = finalSymbols[0];
-        const s2 = finalSymbols[1];
-        const s3 = finalSymbols[2];
-
-        if (s1.char === s2.char && s2.char === s3.char) {
-            // Triple match
-            if (s1.char === '✨') { // Special jackpot for Innovation
-                winAmount = betAmount * 50;
-                showMessage(`🌟✨🌟 AGI Jackpot! Triple Innovation! You won ${winAmount} AI Tokens!`);
-            } else {
-                winAmount = betAmount * (s1.value / 5); // General triple match, base on symbol value
-                showMessage(`🎉 Triple ${s1.name}! You won ${winAmount} AI Tokens!`);
-            }
-        } else if (s1.char === s2.char || s2.char === s3.char || s1.char === s3.char) {
-            // Double match
-            let matchedSymbol;
-            if (s1.char === s2.char) matchedSymbol = s1;
-            else if (s2.char === s3.char) matchedSymbol = s2;
-            else matchedSymbol = s3;
-
-            winAmount = betAmount * (matchedSymbol.value / 10); // Double match, base on symbol value
-            showMessage(`🥳 Double ${matchedSymbol.name}! You won ${winAmount} AI Tokens!`);
+        if (winnings > 0) {
+            tokens += winnings;
+            displayMessage(`Alignment achieved! You won ${winnings} tokens! Total: ${tokens}`, true);
         } else {
-            showMessage("AI needs more data... no win this time.");
+            displayMessage(`Hallucination detected. Your model needs more training. Total: ${tokens}`, false);
         }
 
-        tokens += winAmount;
-        updateDisplay();
-
+        updateTokensDisplay();
+        isSpinning = false;
         spinButton.disabled = false;
-        betDecreaseButton.disabled = false;
-        betIncreaseButton.disabled = false;
     }
 
-    function adjustBet(change) {
-        const newBet = betAmount + change;
-        if (newBet >= minBet && newBet <= maxBet) {
-            betAmount = newBet;
-            updateDisplay();
-            showMessage(`Bet adjusted to ${betAmount} AI Tokens.`);
-        } else if (newBet < minBet) {
-            showMessage(`Minimum bet is ${minBet} AI Tokens.`, true);
-        } else {
-            showMessage(`Maximum bet is ${maxBet} AI Tokens.`, true);
-        }
-    }
+    // --- Event Listeners ---
+    spinButton.addEventListener('click', spinHandler);
 
-    // Event Listeners
-    spinButton.addEventListener('click', spin);
-    betDecreaseButton.addEventListener('click', () => adjustBet(-5));
-    betIncreaseButton.addEventListener('click', () => adjustBet(5));
+    // --- Initial Setup ---
+    initializeGame();
 });

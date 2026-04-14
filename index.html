@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Slot Machine</title>
+    <title>AI Fun Slot Machine</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="slot-machine">
-        <h1>AI Token Slot Machine</h1>
-        <div class="display-area">
-            <p>AI Tokens: <span id="tokens">100</span></p>
-            <p>Bet: <span id="bet-amount">10</span></p>
+    <div class="slot-machine-container">
+        <h1>AI Fun Slot Machine</h1>
+
+        <div class="token-display">
+            Tokens: <span id="tokens">100</span>
         </div>
+
         <div class="reels">
-            <div class="reel" id="reel1"></div>
-            <div class="reel" id="reel2"></div>
-            <div class="reel" id="reel3"></div>
+            <div class="reel" id="reel1">🧠</div>
+            <div class="reel" id="reel2">🤖</div>
+            <div class="reel" id="reel3">💬</div>
         </div>
+
         <div class="controls">
-            <button id="spin-button">Spin</button>
-            <button id="bet-decrease">-</button>
-            <button id="bet-increase">+</button>
+            <button id="spinButton">Spin for 10 Tokens!</button>
         </div>
-        <p class="message" id="game-message">Ready to challenge the AI?</p>
+
+        <div class="message-display">
+            <p id="message">Press 'Spin' to begin your AI adventure!</p>
+        </div>
+
+        <div class="ai-fun-flavor">
+            <p>Win big and train your model to generate more tokens!</p>
+            <p>Disclaimer: No actual AI models were harmed in the making of this slot machine. Maybe.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
