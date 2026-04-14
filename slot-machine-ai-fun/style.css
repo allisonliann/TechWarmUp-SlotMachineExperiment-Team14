@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #282c34; /* Dark background */
+    color: #61dafb; /* AI-themed blue */
+    text-align: center;
+    flex-direction: column;
+}
+
+.container {
+    background-color: #3a3f4a;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid #61dafb;
+}
+
+h1 {
+    color: #e0e0e0;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(97, 218, 251, 0.7);
+}
+
+.token-display h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    color: #f7b056; /* Token-themed color */
+}
+
+.slot-machine {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.reel {
+    width: 100px;
+    height: 120px;
+    background-color: #1a1e24;
+    border: 3px solid #61dafb;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: #a2e2f7;
+    overflow: hidden; /* Hide overflowing symbols during spin */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+button {
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: #a2e2f7;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    color: #bbb;
+}
+
+.message-display {
+    margin-top: 25px;
+    min-height: 40px;
+}
+
+.message-display p {
+    font-size: 1.3em;
+    color: #e0e0e0;
+}
+
+/* Spin animation (will be dynamically added/removed by JS) */
+.spinning {
+    animation: spin-reel 0.5s infinite linear;
+}
+
+@keyframes spin-reel {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); /* Simulate spinning by rapidly changing content */ }
+}
