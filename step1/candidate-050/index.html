@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slot Machine: The Token Burner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>AI Slot Machine</h1>
+            <div id="stats">
+                <p>Tokens: <span id="balance">1000</span></p>
+                <p>Cost: <span id="spin-cost">50</span></p>
+            </div>
+        </header>
+
+        <main>
+            <div class="slot-machine">
+                <div class="reel" id="reel-1">🤖</div>
+                <div class="reel" id="reel-2">🤖</div>
+                <div class="reel" id="reel-3">🤖</div>
+            </div>
+
+            <button id="spin-button">Generate Prompt (Spin)</button>
+
+            <div id="status-display">
+                <p id="status-message">Ready to burn some context tokens?</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Remember: Every token match is a hallucination closer to AGI.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

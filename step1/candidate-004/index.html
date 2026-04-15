@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="machine">
+        <h1>AI Tokenizer</h1>
+        <div id="reels">
+            <div class="reel">?</div>
+            <div class="reel">?</div>
+            <div class="reel">?</div>
+        </div>
+        <div id="controls">
+            <button id="spin-button">Spin</button>
+            <button id="reset-button">Reset</button>
+        </div>
+        <div id="wallet">
+            <p>Tokens: <span id="token-count">100</span></p>
+        </div>
+        <div id="message"></div>
+        <div id="jackpot-message" class="special-message"></div>
+        <div id="free-spin-message" class="special-message"></div>
+    </div>
+
+    <div id="payout-table">
+        <h2>Payouts</h2>
+        <table>
+            <tr>
+                <td>🤖🤖🤖</td>
+                <td>20 Tokens</td>
+            </tr>
+            <tr>
+                <td>🧠🧠🧠</td>
+                <td>30 Tokens</td>
+            </tr>
+            <tr>
+                <td>🪙🪙🪙</td>
+                <td>Jackpot! (100 Tokens)</td>
+            </tr>
+            <tr>
+                <td>💻💻💻</td>
+                <td>15 Tokens</td>
+            </tr>
+            <tr>
+                <td>📝📝📝</td>
+                <td>Free Spin!</td>
+            </tr>
+            <tr>
+                <td>💥💥💥</td>
+                <td>-10 Tokens</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 
+        To add sound effects, create a 'sounds' folder in this directory.
+        Place your 'spin.mp3', 'win.mp3', 'jackpot.mp3', and 'free-spin.mp3' files in the 'sounds' folder.
+    -->
+    <audio id="spin-sound" src="sounds/spin.mp3"></audio>
+    <audio id="win-sound" src="sounds/win.mp3"></audio>
+    <audio id="jackpot-sound" src="sounds/jackpot.mp3"></audio>
+    <audio id="free-spin-sound" src="sounds/free-spin.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

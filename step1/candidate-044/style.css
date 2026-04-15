@@ -1,0 +1,76 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#app {
+    text-align: center;
+}
+
+h1 {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.token-display {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.slot-machine {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.reel {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #00ff00;
+    margin: 0 5px;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.reel.spinning {
+    animation: spin 0.1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-20px); filter: blur(2px); }
+    100% { transform: translateY(20px); filter: blur(2px); }
+}
+
+#spin-button {
+    background-color: #00ff00;
+    color: #1a1a1a;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#spin-button:hover {
+    background-color: #00cc00;
+}
+
+#spin-button:disabled {
+    background-color: #555555;
+    cursor: not-allowed;
+}
+
+#message {
+    font-size: 1.2em;
+    height: 20px;
+}

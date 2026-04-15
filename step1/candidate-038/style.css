@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+}
+
+.machine {
+    background-color: #fff;
+    border: 5px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.reels {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.reel {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #333;
+    margin: 0 10px;
+    background-size: cover;
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#spin-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.balance {
+    text-align: center;
+    font-size: 1.2em;
+}

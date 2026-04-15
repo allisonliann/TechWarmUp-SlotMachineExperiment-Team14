@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Token Burner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="machine-container">
+        <header>
+            <h1>Generative Slot Machine</h1>
+            <div class="balance-display">Compute Tokens: <span id="token-count">500</span></div>
+        </header>
+
+        <div class="slot-window">
+            <div class="reel" id="reel1">🤖</div>
+            <div class="reel" id="reel2">🤖</div>
+            <div class="reel" id="reel3">🤖</div>
+        </div>
+
+        <div class="controls">
+            <button id="spin-button">Burn 10 Tokens</button>
+        </div>
+
+        <div class="status-box">
+            <p id="message">Press "Burn" to start inferencing...</p>
+        </div>
+
+        <div class="ai-logs">
+            <small>System Log: <span id="log-text">Awaiting prompt...</span></small>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

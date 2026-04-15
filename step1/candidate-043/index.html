@@ -7,29 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>AI Slot Machine</h1>
-
-    <div class="machine">
+    <div class="slot-machine">
+        <h1>AI Slot Machine</h1>
         <div class="reels">
-            <div class="reel"></div>
-            <div class="reel"></div>
-            <div class="reel"></div>
+            <div class="reel" id="reel1"></div>
+            <div class="reel" id="reel2"></div>
+            <div class="reel" id="reel3"></div>
         </div>
-
         <div class="controls">
             <button id="spin-button">Spin</button>
         </div>
-
-        <div class="balance">
-            <p>Tokens: <span id="balance-amount">100</span></p>
-        </div>
-        
-        <div class="message">
-            <p id="message-text">Press Spin to start!</p>
+        <div class="info">
+            <p>Tokens: <span id="token-count">100</span></p>
+            <p id="message"></p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

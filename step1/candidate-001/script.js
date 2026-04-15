@@ -1,45 +1,40 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const spinButton = document.getElementById("spin-button");
-  const tokenBalanceSpan = document.getElementById("token-balance");
-  const message = document.getElementById("message");
-  const reels = document.querySelectorAll(".reel");
+const symbols = ["🤖", "🧠", "💎", "⚡️", "🔥"];
+const spinButton = document.getElementById("spin-button");
+const balanceAmount = document.getElementById("balance-amount");
+const messageText = document.getElementById("message-text");
+const reels = document.querySelectorAll(".reel");
 
-  let tokenBalance = 100;
+let balance = 100;
 
-  const symbols = ["🤖", "🧠", "⚡️", "🔥", "💯"];
-
-  spinButton.addEventListener("click", () => {
-    if (tokenBalance >= 10) {
-      tokenBalance -= 10;
-      updateTokenBalance();
-      spinReels();
-    } else {
-      message.textContent = "You're out of tokens! Refresh to play again.";
+spinButton.addEventListener("click", () => {
+    if (balance <= 0) {
+        messageText.textContent = "You're out of tokens! Refresh to play again.";
+        return;
     }
-  });
 
-  function spinReels() {
-    const results = [];
+    balance -= 10;
+    balanceAmount.textContent = balance;
+    messageText.textContent = "Optimizing hyperparameters...";
+
+    let result = [];
     for (let i = 0; i < reels.length; i++) {
-      const randomIndex = Math.floor(Math.random() * symbols.length);
-      reels[i].textContent = symbols[randomIndex];
-      results.push(symbols[randomIndex]);
+        const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+        reels[i].textContent = randomSymbol;
+        result.push(randomSymbol);
     }
-    checkWin(results);
-  }
 
-  function checkWin(results) {
-    if (results[0] === results[1] && results[1] === results[2]) {
-      const winAmount = 50;
-      tokenBalance += winAmount;
-      updateTokenBalance();
-      message.textContent = `You won ${winAmount} tokens!`;
+    const [first, second, third] = result;
+    if (first === second && second === third) {
+        const winnings = 50;
+        balance += winnings;
+        balanceAmount.textContent = balance;
+        messageText.textContent = `You've achieved AGI! +${winnings} tokens`;
+    } else if (first === second || second === third || first === third) {
+        const winnings = 20;
+        balance += winnings;
+        balanceAmount.textContent = balance;
+        messageText.textContent = `You've disrupted the industry! +${winnings} tokens`;
     } else {
-      message.textContent = "Spin again!";
+        messageText.textContent = "Your model has over-fit.";
     }
-  }
-
-  function updateTokenBalance() {
-    tokenBalanceSpan.textContent = tokenBalance;
-  }
 });

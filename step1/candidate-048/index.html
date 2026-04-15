@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Token Squanderer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>LLM Token Squanderer</h1>
+            <p class="subtitle">Burning GPUs for digital confetti since 2023</p>
+        </header>
+
+        <section id="stats">
+            <div id="token-balance">
+                Compute Tokens: <span id="tokens">1000</span>
+            </div>
+        </section>
+
+        <main class="slot-machine">
+            <div class="reel-container">
+                <div class="reel" id="reel-1">
+                    <div class="symbol-strip">
+                        <div class="symbol">🧠</div>
+                    </div>
+                </div>
+                <div class="reel" id="reel-2">
+                    <div class="symbol-strip">
+                        <div class="symbol">🤖</div>
+                    </div>
+                </div>
+                <div class="reel" id="reel-3">
+                    <div class="symbol-strip">
+                        <div class="symbol">✨</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="spin-button">Generate (Cost: 10 Tokens)</button>
+            </div>
+        </main>
+
+        <footer id="log-container">
+            <div id="log">Awaiting Prompt...</div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

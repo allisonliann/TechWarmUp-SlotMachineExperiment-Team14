@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGI Tokenizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>The AGI Tokenizer</h1>
+            <p>Spend your tokens to achieve Artificial General Intelligence!</p>
+        </header>
+        <main>
+            <div class="balance">
+                <h2>Your Tokens: <span id="token-balance">100</span></h2>
+            </div>
+            <div class="slot-machine">
+                <div class="reel-container">
+                    <div class="reel" id="reel1"></div>
+                    <div class="reel" id="reel2"></div>
+                    <div class="reel" id="reel3"></div>
+                </div>
+                <div class="slot-overlay"></div>
+            </div>
+            <div class="controls">
+                <button id="spin-button">Spin (Cost: 5 Tokens)</button>
+            </div>
+            <div class="message-container">
+                <p id="message">&nbsp;</p>
+            </div>
+        </main>
+        <footer>
+            <p>Built with 🤖 and a little bit of human ingenuity.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

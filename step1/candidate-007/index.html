@@ -3,33 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Slot Machine</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AI Token Slot Machine</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <h1>AI Slot Machine</h1>
-
-    <div class="machine">
+    <h1>AI Token Slot Machine</h1>
+    <div class="slot-machine">
         <div class="reels">
             <div class="reel"></div>
             <div class="reel"></div>
             <div class="reel"></div>
         </div>
-
         <div class="controls">
-            <button id="spin-button">Spin</button>
+            <button id="spinButton">Spin (Cost: 10 Tokens)</button>
         </div>
-
-        <div class="balance">
-            <p>Tokens: <span id="balance-amount">100</span></p>
+        <div class="stats">
+            <p>Tokens: <span id="tokenCount">1000</span></p>
+            <p>Last Win: <span id="winAmount">0</span></p>
         </div>
-        
-        <div class="message">
-            <p id="message-text">Press Spin to start!</p>
-        </div>
+        <p class="message" id="message-log"></p>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slot Machine: Context & Token Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal">
+        <header>
+            <h1>AI TOKEN SLOT MACHINE</h1>
+            <p>Spending context, hallucinating results.</p>
+        </header>
+
+        <main>
+            <div id="status-display" class="neon-box">
+                <span class="label">STATUS:</span>
+                <span id="status-msg">READY TO GENERATE...</span>
+            </div>
+
+            <div id="token-display" class="neon-box">
+                <span class="label">CONTEXT TOKENS:</span>
+                <span id="token-count">1000</span>
+            </div>
+
+            <div class="slot-machine">
+                <div class="reels">
+                    <div id="reel-1" class="reel">🧠</div>
+                    <div id="reel-2" class="reel">🧠</div>
+                    <div id="reel-3" class="reel">🧠</div>
+                </div>
+                <button id="spin-button" class="neon-btn">GENERATE OUTCOME</button>
+            </div>
+
+            <div id="message-log" class="neon-box">
+                <p>> System initialized.</p>
+                <p>> Waiting for user prompt...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 AI Overlords. No rights reserved.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

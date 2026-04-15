@@ -7,29 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>AI Slot Machine</h1>
-
-    <div class="machine">
-        <div class="reels">
+    <div id="slot-machine">
+        <h1>AI Tokenizer</h1>
+        <div id="reels">
             <div class="reel"></div>
             <div class="reel"></div>
             <div class="reel"></div>
         </div>
-
-        <div class="controls">
+        <div id="controls">
             <button id="spin-button">Spin</button>
+            <p>Cost: 10 Tokens</p>
         </div>
-
-        <div class="balance">
-            <p>Tokens: <span id="balance-amount">100</span></p>
+        <div id="wallet">
+            <h2>Your Wallet</h2>
+            <p>Tokens: <span id="token-balance">100</span></p>
+            <p>Last Win: <span id="last-win">0</span></p>
         </div>
-        
-        <div class="message">
-            <p id="message-text">Press Spin to start!</p>
-        </div>
+        <div id="message-display"></div>
     </div>
-
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

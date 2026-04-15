@@ -1,0 +1,89 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1a1a2e;
+    color: #e0e1dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#slot-machine {
+    background-color: #162447;
+    border: 5px solid #0f3460;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+h1 {
+    color: #e94560;
+    text-transform: uppercase;
+}
+
+#reels {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    border: 3px solid #0f3460;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #1f4068;
+    overflow: hidden;
+}
+
+.reel {
+    width: 100px;
+    height: 120px;
+    background-color: #1b1b2f;
+    margin: 0 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    font-size: 80px;
+    line-height: 120px;
+    text-align: center;
+}
+
+.reel .symbol-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+#game-info {
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+
+#message-area {
+    margin-top: 10px;
+    color: #e94560;
+    min-height: 1.5em;
+}
+
+#spin-button {
+    background-color: #e94560;
+    color: #e0e1dd;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#spin-button:hover {
+    background-color: #c7344d;
+}
+
+#spin-button:disabled {
+    background-color: #5a6278;
+    cursor: not-allowed;
+}
